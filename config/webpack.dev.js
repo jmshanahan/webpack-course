@@ -3,7 +3,7 @@ const webpack = require("webpack");
 
 module.exports = {
     entry:{
-        main: "./src/main.js"
+        main: ["babel-polyfill","./src/main.js"]
     },
     mode:"development",
     output:{
@@ -21,16 +21,16 @@ module.exports = {
     },
     module:{
         rules:[
-            // {
-            //     test: /\.js$/,
-            //     use: [
-            //         {
-            //         loader: "babel-loader"
-            //         }
-            //     ],
-            //     exclude: /node_modules/
+            {
+                test: /\.js$/,
+                use: [
+                    {
+                    loader: "babel-loader"
+                    }
+                ],
+                exclude: /node_modules/
 
-            // },
+            },
             {
                 test: /\.css$/,
                 use:[
