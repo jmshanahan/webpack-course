@@ -1,4 +1,6 @@
-const path = require('path')
+const path = require('path');
+const webpack = require("webpack");
+
 module.exports = {
     entry:{
         main: "./src/main.js"
@@ -11,20 +13,24 @@ module.exports = {
     },
     devServer:{
         contentBase: "dist",
-        overlay: true
+        overlay: true,
+        hot: false,
+        stats:{
+            colors: true
+        }
     },
     module:{
         rules:[
-            {
-                test: /\.js$/,
-                use: [
-                    {
-                    loader: "babel-loader"
-                    }
-                ],
-                exclude: /node_modules/
+            // {
+            //     test: /\.js$/,
+            //     use: [
+            //         {
+            //         loader: "babel-loader"
+            //         }
+            //     ],
+            //     exclude: /node_modules/
 
-            },
+            // },
             {
                 test: /\.css$/,
                 use:[
@@ -63,12 +69,11 @@ module.exports = {
                     {
                         loader:"file-loader",
                         options:{
-                            name: "images/[name].[ext]"
+                            name: "images/[name]-[hash:8].[ext]"
                         }
                     }
                 ]
             }
         ]
-    }
-
+    },
 }
